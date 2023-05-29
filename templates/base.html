@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+          $(".reply-button").click(function(event)
+          {
+            $(".reply-form").hide();
+            var id = $(event.target).attr('id');
+            $("#reply-form-"+id).show();
+            $(".reply-button").show();
+            $("#"+id).hide();
+          });
+
+          $(".hide-reply-button").click(function()
+          {
+            $(".reply-button").show();
+            $(".reply-form").hide();
+          }
+        )
+        });
+    </script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

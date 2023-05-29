@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        var availableTags = [
+        {% for tag in tags %}
+            '{{tag.name}}',
+        {% endfor %}
+        ];
+        function split( val ) {
+            return val.split( /,\s*/ );
+        }
+        function extractLast( term ) {
+            return split( term ).pop();
+        }
+    
+        $( "#tags" )
+        // don't navigate away from the field on tab when selecting an item
+        .on( "keydown", function( event ) {
+            if ( event.keyCode === $.ui.keyCode.TAB &&
+                $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+            }
+        })
+        .autocomplete({
+            minLength: 0,
+            source: function( request, response ) {
+            // delegate back to autocomplete, but extract the last term
+            response( $.ui.autocomplete.filter(
+                availableTags, extractLast( request.term ) ) );
+            },
+            focus: function() {
+            // prevent value inserted on focus
+            return false;
+            },
+            select: function( event, ui ) {
+            var terms = split( this.value );
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( ", " );
+            return false;
+            }
+        });
+    } );
+    </script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h3>Create Post</h3><br>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            {{field.label}}<br>
+            {{field}}<br><hr>
+        {% endfor %}
+        <div class="ui-widget">
+            <label for="tags">Tags (seperate with ', ') </label><br>
+            <input id="tags" name = 'tags' type="text" size="50" placeholder="anime, League of Legends, etc">
+        </div>
+        <input type="Submit" value="Create Post">
+    </form>
+</body>
+</html>
+
