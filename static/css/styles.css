@@ -29,6 +29,11 @@
     text-align: right;
 }
 
+.gallery-item{
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
 .gallery-item-details{
     display: none;
 }
@@ -75,6 +80,38 @@
     display: block;
 }
 
+.user-item{
+    text-align: center;
+}
+
+.users-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.tags-container{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.search{
+    padding: 10px;
+}
+
+.post-container{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.post-header{
+    display: flex;
+}
+
+.post-header-options{
+    margin-left: auto;
+    text-align: right;
+}
+
 .comments-container{
     display: flex;
 }
@@ -90,4 +127,28 @@
 .comment-item{
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.comment-header{
+    background-color: #E7EDF5;
+}
+
+.comment-body{
+    background-color: #E7EDF5;
+}
+
+.profile-container{
+    display:block;
+    text-align: center;
+}
+
+.avatar{
+    object-fit: cover;
+    width: 10%;
+    border-radius: 50%;
+}
+.avatar-small{
+    object-fit: cover;
+    width: 50%;
+    border-radius: 50%;
 }

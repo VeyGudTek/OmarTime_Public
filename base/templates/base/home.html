@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="home-container">
-    <div class="tag-container">
-        BROWSE BY TAG<hr>
+    <div class="tags-container-small">
+        TAGS<a href="{% url 'tags' %}">(BROWSE ALL)</a><hr>
         {% for tag in tags %}
-            <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a><br>
+            <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}({{tag.post_set.all.count}})</a><br>
         {% endfor %}
 
     </div>
 
     <div class="post-container">
-        POSTS <a href="{% url 'create_post' %}">create post</a><hr>
+        POSTS <a href="{% url 'create_post' %}">create post</a><br>
+        {% if query %}
+            <a href="{% url 'home' %}?q={{query}}">Relevant</a>
+        {% endif %}
+        <a href="{% url 'home' %}?q={{query}}&sort_by=newest">Newest</a>
+        <a href="{% url 'home' %}?q={{query}}&sort_by=popular">Popular</a>
+        <a href="{% url 'home' %}?sort_by=feed">Feed</a>
+        <hr>
+
         <div class="gallery-container">
             {% for post in posts_page.object_list %}
             <div class="gallery-item-container">
@@ -24,15 +33,15 @@
                     </div>
                     {% if request.user == post.user %}
                     <div class="gallery-item-options">
-                        <a href="{% url 'delete' post.id 'post' %}">DELETE</a>
+                        <a href="{% url 'edit_post' post.id %}">EDIT</a>&emsp;<a href="{% url 'delete' post.id 'post' %}">DELETE</a>
                     </div>
                     {% endif %}
                 </div>
-
-                <div class="gallery-item">
-                    <a href="{% url 'post' post.id %}"><img src="{{post.picture.url}}" width=100%></a>
+        
+                <div>
+                    <a href="{% url 'post' post.id %}"><img src="{{post.picture.url}}" width=100% class="gallery-item"></a>
                 </div>
-
+        
                 <div class="gallery-item-details">
                     {% if post.description %}
                         Description: {{post.description|slice:'0:50'}}<br>
@@ -45,11 +54,11 @@
             
             {% endfor %}
         </div><hr>
-
+    
         <div class="pages-container">
             <div class="pages-item">
                 {% if posts_page.has_previous %}
-                <a href="{% url 'home' %}?q={{query}}&page={{posts_page.previous_page_number}}">{{posts_page.previous_page_number}}</a>
+                <a href="{% url 'home' %}?q={{query}}&page={{posts_page.previous_page_number}}&sort_by={{sort_by}}">{{posts_page.previous_page_number}}</a>
                 {% endif %}
             </div>
             <div class="pages-item">
@@ -57,15 +66,25 @@
             </div>
             <div class="pages-item">
                 {% if posts_page.has_next %}
-                <a href="{% url 'home' %}?q={{query}}&page={{posts_page.next_page_number}}">{{posts_page.next_page_number}}</a>
+                <a href="{% url 'home' %}?q={{query}}&page={{posts_page.next_page_number}}&sort_by={{sort_by}}">{{posts_page.next_page_number}}</a>
                 {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="User-container">
+    <div class="users-container-home">
+        USERS<a href="{% url 'users' %}">(BROWSE ALL)</a><hr>
         {% for user in users %}
-            {{user.username}}
+        <div class="user-item">
+            <a href="{% url 'profile' user.username %}">
+                {{user.username}}<br>
+                {% if user.profile.avatar %}
+                    <img src="{{user.profile.avatar.url}}" class="avatar-small">
+                {% else %}
+                    <img src="{% static 'images/avatar.png' %}" class="avatar-small">
+                {% endif %}
+            </a>
+        </div>
         {% endfor %}
     </div>
 </div>

@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {% for message in messages %}
     {{message}}
 {% endfor %}
 
 <form action="" method="POST">
     {% csrf_token %}
-    username: <input type="text" name="username">
-    password: <input type="password" name="password">
+    {{form.as_p}}
     <input type="Submit" value="Sign In">
 </form>
+{% endblock %}

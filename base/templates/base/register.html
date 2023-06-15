@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in messages %}
+    {{message}}
+{% endfor %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{user_form.as_p}}
+    Fields belows are optional
+    {{profile_form.as_p}}
+    <input type="Submit" value="Create Account">
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="search">
+    <form method="GET" action="">
+        <input type="text" name="q" placeholder="Enter name of User" maxlength="500" size='200'> 
+        <input type="Submit" value="Find Users">
+    </form>
+</div>
+<div class="users-container">
+{% for user in users_page.object_list %}
+    <div class="user-item">
+        <a href="{% url 'profile' user.username %}">
+            {{user.username}}<br>
+            {% if user.profile.avatar %}
+                <img src="{{user.profile.avatar.url}}" class="avatar-small">
+            {% else %}
+                <img src="{% static 'images/avatar.png' %}" class="avatar-small">
+            {% endif %}
+        </a>
+    </div>
+{% endfor %}
+</div>
+
+<div class="pages-container">
+    <div class="page-item">
+        {% if users_page.has_previous %}
+            <a href="{% url 'users' %}?q={{query}}&page={{users_page.previous_page_number}}">{{users_page.previous_page_number}}</a>
+        {% endif %}
+    </div>
+    <div class="page-item">
+        Page {{page_num}}
+    </div>
+    <div class="page-item">
+        {% if users_page.has_next %}
+            <a href="{% url 'users' %}?q={{query}}&page={{users_page.next_page_number}}">{{users_page.next_page_number}}</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
