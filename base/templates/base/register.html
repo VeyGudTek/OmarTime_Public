@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for message in messages %}
-    {{message}}
-{% endfor %}
+<div class="error">
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+</div>
 
-<form method="POST" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{user_form.as_p}}
-    Fields belows are optional
-    {{profile_form.as_p}}
-    <input type="Submit" value="Create Account">
-</form>
+<div class="login-register-container">
+    <div class="form-header" style="font-size: x-large;">
+        Register<hr>
+    </div>
+
+    <div class="register-form">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{user_form.as_p}}
+            
+            <hr>
+            Fields belows are optional
+            {{profile_form.as_p}}
+            <input type="Submit" value="Create Account">
+        </form>
+    </div>
+</div>
 {% endblock %}
+
