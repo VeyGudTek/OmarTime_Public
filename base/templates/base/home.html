@@ -4,7 +4,11 @@
 {% block content %}
 <div class="home-container">
     <div class="tags-container-small">
-        TAGS<a href="{% url 'tags' %}">(BROWSE ALL)</a><hr>
+        <div class="section-header">
+            <span class="section-header-title">Tags</span> <span class="section-header-options"><a href="{% url 'tags' %}">(Browse All)</a></span>
+        </div>
+        <hr>
+
         {% for tag in tags %}
             <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}({{tag.post_set.all.count}})</a><br>
         {% endfor %}
@@ -12,13 +16,17 @@
     </div>
 
     <div class="post-container">
-        POSTS <a href="{% url 'create_post' %}">create post</a><br>
-        {% if query %}
-            <a href="{% url 'home' %}?q={{query}}">Relevant</a>
-        {% endif %}
-        <a href="{% url 'home' %}?q={{query}}&sort_by=newest">Newest</a>
-        <a href="{% url 'home' %}?q={{query}}&sort_by=popular">Popular</a>
-        <a href="{% url 'home' %}?sort_by=feed">Feed</a>
+        <div class="section-header">
+            <span class="section-header-title">Posts</span>&nbsp<span class="section-header-link"><a href="{% url 'create_post' %}">create</a></span>
+            <span class="section-header-options">
+                {% if query %}
+                    <a href="{% url 'home' %}?q={{query}}">Relevant</a>
+                {% endif %}
+                <a href="{% url 'home' %}?q={{query}}&sort_by=newest">Newest</a>
+                <a href="{% url 'home' %}?q={{query}}&sort_by=popular">Popular</a>
+                <a href="{% url 'home' %}?sort_by=feed">Feed</a>
+            </span>
+        </div>
         <hr>
 
         <div class="gallery-container">
@@ -26,7 +34,7 @@
             <div class="gallery-item-container">
                 <div class="gallery-item-header-container">
                     <div class="gallery-item-title">
-                        {{post.title}}
+                        {{post.title}}&nbsp
                     </div>
                     <div class="gallery-item-user">
                         by {{post.user.username}} - {{post.created|timesince}}
@@ -47,7 +55,7 @@
                         Description: {{post.description|slice:'0:50'}}<br>
                     {% endif %}
                     {% if post.tags.all %}
-                        TAGS: {% for tag in post.tags.all %}<a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}, </a>{% endfor %}
+                        Tags: {% for tag in post.tags.all %}<a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}, </a>{% endfor %}
                     {% endif %}
                 </div>
             </div>
@@ -73,7 +81,11 @@
     </div>
 
     <div class="users-container-home">
-        USERS<a href="{% url 'users' %}">(BROWSE ALL)</a><hr>
+        <div class="section-header">
+            <span class="section-header-title">Users</span> <span class="section-header-options"><a href="{% url 'users' %}">(Browse All)</a></span>
+        </div>
+
+        <hr>
         {% for user in users %}
         <div class="user-item">
             <a href="{% url 'profile' user.username %}">

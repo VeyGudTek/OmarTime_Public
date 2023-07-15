@@ -20,7 +20,7 @@
 <div class="tags-container">
 {% for tag in tags_page.object_list %}
     <div>
-        {{tag.name}}({{tag.post_set.count}})
+        <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}({{tag.post_set.count}})</a>
     </div>
 {% endfor %}
 </div>
