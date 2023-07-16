@@ -55,7 +55,7 @@
                         Description: {{post.description|slice:'0:50'}}<br>
                     {% endif %}
                     {% if post.tags.all %}
-                        Tags: {% for tag in post.tags.all %}<a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}, </a>{% endfor %}
+                        Tags: {% for tag in post.tags.all %}<a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}},</a> {% endfor %}
                     {% endif %}
                 </div>
             </div>
