@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for message in messages %}
-    {{message}}
-{% endfor %}
+<div class="login-register-container">
+    <div class="form-header" style="font-size: x-large;">
+        Login<hr>
+    </div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="Submit" value="Sign In">
-</form>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="error">
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </div><br>
+        <input type="Submit" value="Sign In">
+    </form>
+</div>
 {% endblock %}

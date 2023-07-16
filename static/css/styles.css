@@ -190,3 +190,18 @@
     width: 50%;
     border-radius: 50%;
 }
+
+.login-register-container{
+    text-align: center;
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.register-form{
+    text-align: left;
+}
+
+.error{
+    color: rgb(221, 119, 119);
+}
