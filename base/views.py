@@ -303,7 +303,7 @@ def reply(request, post_pk, comment_pk):
     body = request.POST.get('reply', '')
     
     if not (post and comment and body):
-        return HttpResponse('The post or comment you are trying to respond to does not exist, donkey')
+        return HttpResponse('The post or comment you are trying to respond to does not exist, donkey. Either that or you didnt write anything in the reply, donkey.')
 
     depth = comment.depth + '1'
 

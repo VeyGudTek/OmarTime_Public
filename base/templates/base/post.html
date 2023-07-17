@@ -7,11 +7,11 @@
             {{post.title}}&nbsp
         </div>
         <div class="post-header-user">
-            by {{post.user.username}} - {{post.created|timesince}}
+            by <a class="link-underline" href="{% url 'profile' post.user.username %}">{{post.user.username}}</a> - {{post.created|timesince}}
         </div>
         {% if request.user == post.user %}
         <div class="post-header-options">
-            <a href="{% url 'edit_post' post.id %}">EDIT</a>&emsp;<a href="{% url 'delete' post.id 'post' %}">DELETE</a>
+            <a class="button-edit" href="{% url 'edit_post' post.id %}">Edit</a>&emsp;<a class="button-edit" href="{% url 'delete' post.id 'post' %}">Delete</a>
         </div>
         {% endif %}
     </div>
@@ -19,20 +19,21 @@
     <img src="{{post.picture.url}}" style="display: block; margin: auto; max-width: 100%;"><br>
 
     <div>
-        Likes: {{post.likes.count}} Favorites: {{post.favorites.count}}<br>
         {% if request.user not in post.likes.all %}
-            (<a href="{% url 'like' post.id 'post' %}" >Like</a>)
+            <a class="button-edit" href="{% url 'like' post.id 'post' %}" >Likes</a>
         {% else %}
-            (<a href="{% url 'like' post.id 'post' %}" >Unlike</a>)
+            <a class="button-edit" href="{% url 'like' post.id 'post' %}" >Unlike</a>
         {% endif %}
+        : {{post.likes.count}}
 
         &nbsp &nbsp &nbsp &nbsp
 
         {% if request.user not in post.favorites.all %}
-            (<a href="{% url 'favorite' post.id %}" >Favorite</a>)
+            <a class="button-edit" href="{% url 'favorite' post.id %}" >Favorites</a>
         {% else %}
-            (<a href="{% url 'favorite' post.id %}" >Unfavorite</a>)
+            <a class="button-edit" href="{% url 'favorite' post.id %}" >Unfavorite</a>
         {% endif %}
+        : {{post.favorites.count}}
     <div><br>
 
     <div>
@@ -40,7 +41,7 @@
         {{post.description}}<hr>
         Tags: <br>
         {% for tag in post.tags.all %}
-            <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a>
+            <a class="link-underline" href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a>
         {% endfor %}<hr>
     </div>
 
@@ -49,7 +50,7 @@
     <form method="POST" action="">
         {% csrf_token %}
         <input id="comment-box" type="text" name="comment" maxlength="200" size="50" placeholder="Add your comment here...">
-        <input type="Submit" value="Add Comment">
+        <input class="button-edit" type="Submit" value="Add Comment">
     </form><br>
     {% for comment in comments %}
     <div class="comments-container">
@@ -64,9 +65,9 @@
         {% endfor %}
         <div class="comment-item">
             <div class="comment-header">
-                <a href="{% url 'profile' comment.user.username %}">{{comment.user.username}}<a> - {{comment.created|timesince}} 
+                <a class="link-underline" href="{% url 'profile' comment.user.username %}">{{comment.user.username}}<a> - {{comment.created|timesince}} 
                 {% if request.user == comment.user %}
-                <a href="{% url 'delete' comment.id 'comment' %}"><button>DELETE</button></a>
+                <a class="button-edit" href="{% url 'delete' comment.id 'comment' %}">Delete</a>
                 {% endif %}
                 <input class="reply-button" id="{{forloop.counter0}}" type="Button" value="REPLY">
             </div>
@@ -80,7 +81,7 @@
                 {% csrf_token %}
                 <input id="reply-box" type="text" name="reply" maxlength="200" size="50" placeholder="Add your reply here...">
                 <input class='hide-reply-button' type="Button" value="CANCEL">
-                <input type="Submit" value="Add Reply">
+                <input class="button-edit" type="Submit" value="Add Reply">
             </form>
             </div>
         </div>

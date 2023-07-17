@@ -8,22 +8,25 @@
     {% else %}
         <img src="{{user.profile.avatar.url}}" class="avatar"><br>
     {% endif %}
-    {{user.username}} - <a href="{% url 'follow' user.username %}">
 
-    {% if not request.user.is_authenticated or not user in request.user.profile.following.all %}follow{% else %}unfollow{% endif %}</a><br> 
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+        {{user.username}} - <a class="button-edit" href="{% url 'follow' user.username %}">
 
-    <a href="{% url 'followers' user.username 'following' %}">following</a>: {{user.profile.following.count}} &emsp; <a href="{% url 'followers' user.username 'followers' %}">followers</a>: {{user.followers.count}}
+        {% if not request.user.is_authenticated or not user in request.user.profile.following.all %}follow{% else %}unfollow{% endif %}</a>
+    </div>
+
+    <a class="link-underline" href="{% url 'followers' user.username 'following' %}">following</a>: {{user.profile.following.count}} &emsp; <a class="link-underline" href="{% url 'followers' user.username 'followers' %}">followers</a>: {{user.followers.count}}
     <div class="bio-container">
         {{user.profile.bio}}
     </div>
     {% if request.user == user %}
-    <a href="{% url 'edit_user' %}">EDIT</a>
+    <a class="button-edit" href="{% url 'edit_user' %}">EDIT</a>
     {% endif %}
 </div>
 
 <div class="post-container">
     {% if request.user == user %}
-    POSTS <a href="{% url 'create_post' %}">create post</a><hr>
+    POSTS <a class="button-edit" href="{% url 'create_post' %}">create</a><hr>
     {% endif %}
 
     <div class="gallery-container">
@@ -38,7 +41,7 @@
                 </div>
                 {% if request.user == post.user %}
                 <div class="gallery-item-options">
-                    <a href="{% url 'edit_post' post.id %}">EDIT</a>&emsp;<a href="{% url 'delete' post.id 'post' %}">DELETE</a>
+                    <a class="button-edit" href="{% url 'edit_post' post.id %}">EDIT</a>&emsp;<a class="button-edit" href="{% url 'delete' post.id 'post' %}">DELETE</a>
                 </div>
                 {% endif %}
             </div>
@@ -52,7 +55,7 @@
                     Description: {{post.description|slice:'0:50'}}<br>
                 {% endif %}
                 {% if post.tags.all %}
-                    TAGS: {% for tag in post.tags.all %}<a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}, </a>{% endfor %}
+                    TAGS: {% for tag in post.tags.all %}<a class="link-underline" href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}, </a>{% endfor %}
                 {% endif %}
             </div>
         </div>
@@ -63,7 +66,7 @@
     <div class="pages-container">
         <div class="pages-item">
             {% if posts_page.has_previous %}
-            <a href="{% url 'profile' user.username %}?page={{posts_page.previous_page_number}}">{{posts_page.previous_page_number}}</a>
+            <a class="button-small" href="{% url 'profile' user.username %}?page={{posts_page.previous_page_number}}">{{posts_page.previous_page_number}}</a>
             {% endif %}
         </div>
         <div class="pages-item">
@@ -71,7 +74,7 @@
         </div>
         <div class="pages-item">
             {% if posts_page.has_next %}
-            <a href="{% url 'profile' user.username %}?page={{posts_page.next_page_number}}">{{posts_page.next_page_number}}</a>
+            <a class="button-small" href="{% url 'profile' user.username %}?page={{posts_page.next_page_number}}">{{posts_page.next_page_number}}</a>
             {% endif %}
         </div>
     </div>

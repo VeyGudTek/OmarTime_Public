@@ -5,8 +5,8 @@
     {% csrf_token %}
     {{user_form.as_p}}
     {{profile_form.as_p}}
-    <input type="Submit" value="Save Changes">
+    <input class="button-edit" type="Submit" value="Save Changes">
 </form>
 
-<br>Click <a href="{% url 'edit_password' %}">here</a> to change password
+<br>Click <a class="button-edit" href="{% url 'edit_password' %}">here</a> to change password
 {% endblock %}

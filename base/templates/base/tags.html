@@ -3,24 +3,24 @@
 {% block content %}
 <div class="search">
     <form method="GET" action="">
-        <input type="text" name="q" placeholder="Enter Tag Here" size='200'>
-        <input type="Submit" value="Search tags">
+        <input class="search-bar" type="text" name="q" placeholder="Enter Tag Here" size=65%>
+        <input class="button-small" type="Submit" value="Search tags">
     </form>
 </div>
 
-<div class="sort-options">
+<div class="sort-options" style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
     {% if query %}
-        <a href="{% url 'tags' %}">All</a>
+        <a class="button-small" href="{% url 'tags' %}">All</a> &emsp;
     {% endif %}
-    <a href="{% url 'tags' %}?q={{query}}">Alphebetical</a> &emsp;
-    <a href="{% url 'tags' %}?q={{query}}&sort_by=popular">Popular</a> &emsp;
-    <a href="{% url 'tags' %}?q={{query}}&sort_by=recent">Recently Updated</a>
+    <a class="button-small" href="{% url 'tags' %}?q={{query}}">Alphebetical</a> &emsp;
+    <a class="button-small" href="{% url 'tags' %}?q={{query}}&sort_by=popular">Popular</a> &emsp;
+    <a class="button-small" href="{% url 'tags' %}?q={{query}}&sort_by=recent">Recently Updated</a>
 </div>
 
 <div class="tags-container">
 {% for tag in tags_page.object_list %}
     <div>
-        <a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}({{tag.post_set.count}})</a>
+        <a class="link-underline" href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}({{tag.post_set.count}})</a>
     </div>
 {% endfor %}
 </div>
@@ -29,7 +29,7 @@
 <div class="pages-container">
     <div class="page-item">
         {% if tags_page.has_previous %}
-            <a href="{% url 'tags' %}?q={{query}}&page={{tags_page.previous_page_number}}&sort_by={{sort_by}}">{{tags_page.previous_page_number}}</a>
+            <a class="button-small" href="{% url 'tags' %}?q={{query}}&page={{tags_page.previous_page_number}}&sort_by={{sort_by}}">{{tags_page.previous_page_number}}</a>
         {% endif %}
     </div>
     <div class="page-item">
@@ -37,7 +37,7 @@
     </div>
     <div class="page-item">
         {% if tags_page.has_next %}
-            <a href="{% url 'tags' %}?q={{query}}&page={{tags_page.next_page_number}}&sort_by={{sort_by}}">{{tags_page.next_page_number}}</a>
+            <a class="button-small" href="{% url 'tags' %}?q={{query}}&page={{tags_page.next_page_number}}&sort_by={{sort_by}}">{{tags_page.next_page_number}}</a>
         {% endif %}
     </div>
 </div>
