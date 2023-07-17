@@ -3,3 +3,4 @@ base/migrations/__pycache__/
 OmarTime/__pycache__/
 base/__pycache__/
 .venv/
+.vscode/
