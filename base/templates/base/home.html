@@ -19,15 +19,15 @@
 
     <div class="post-container">
         <div class="section-header">
-            <span class="section-header-title">Posts</span>&nbsp<span class="section-header-link"><a class="button-edit" href="{% url 'create_post' %}">create</a></span>
-            <span class="section-header-options">
+            <div class="section-header-title">Posts</div>&nbsp<div class="section-header-link"><a class="button-edit" href="{% url 'create_post' %}">Create</a></div>
+            <div class="section-header-options">
                 {% if query %}
                     <a href="{% url 'home' %}?q={{query}}">Relevant</a>
                 {% endif %}
                 <a class="button-small" href="{% url 'home' %}?q={{query}}&sort_by=newest">Newest</a>
                 <a class="button-small" href="{% url 'home' %}?q={{query}}&sort_by=popular">Popular</a>
                 <a class="button-small" href="{% url 'home' %}?sort_by=feed">Feed</a>
-            </span>
+            </div>
         </div>
         <hr>
 

@@ -11,20 +11,15 @@
 .section-header{
     height: 50px;
     display: flex;
+    align-items: center;
 }
 
 .section-header-title{
     font-size: x-large;
-    align-self: flex-end;
-}
-
-.section-header-link{
-    align-self: flex-end;
 }
 
 .section-header-options{
     margin-left: auto;
-    align-self: flex-end;
 }
 
 .gallery-container{
@@ -228,14 +223,14 @@
 }
 
 .button-small, .reply-button, .hide-reply-button{
-    padding: 5px;
+    padding: 7px;
     border-radius: 40px/40px;
     border-width: 0;
     background-color: #dedede;
 }
 
 .button-edit{
-    padding: 5px;
+    padding: 7px;
     border-radius: 40px/40px;
     border-width: 0;
     background-color: #abd8ff;
