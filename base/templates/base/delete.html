@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Are you sure you want to delete this {{name}}?<br><br>
-{{obj}}<br><br><br><br>
+<div class="delete-container">
+    Are you sure you want to delete this {{name}}?<br><br>
+    {{obj}}<br><br><br><br>
 
-<a href="{{request.META.HTTP_REFERER}}">GO BACK</a>
-<form method="POST">
-    {% csrf_token %}
-    <input type="Submit" value="YES">
-</form>
+
+    <form method="POST">
+        {% csrf_token %}
+        <a class="button-small" href="{{request.META.HTTP_REFERER}}">GO BACK</a>
+        <input class="button-edit" type="Submit" value="YES">
+    </form>
+</div>
 {% endblock %}

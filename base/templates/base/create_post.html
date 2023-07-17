@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,7 @@
     <title>Omar</title>
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
@@ -67,11 +70,11 @@
             {{field.label}}<br>
             {{field}}<br><hr>
         {% endfor %}
-        <div class="ui-widget">
+        <div class="ui-widget" style="margin-bottom: 10px;">
             <label for="tags">Tags (seperate with ', ') </label><br>
             <input id="tags" name = 'tags' type="text" size="50" placeholder="anime, League of Legends, etc">
         </div>
-        <input type="Submit" value="Create Post">
+        <input class="button" type="Submit" value="Create Post">
     </form>
 </body>
 </html>

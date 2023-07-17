@@ -1,5 +1,5 @@
 * {
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: Helvetica,sans-serif;
 }
 .home-container{
     margin-left: 2%;
@@ -83,7 +83,8 @@
 .search-container{
     text-align: center;
     display: block;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .navbar-items-container{
@@ -94,6 +95,7 @@
 .navbar-item{
     text-align: right;
     width: 50%;
+    margin: 10px;
 }
 
 .pages-container{
@@ -111,6 +113,7 @@
 
 .user-item{
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .users-container{
@@ -152,6 +155,7 @@
 
 .comments-container{
     display: flex;
+    margin-bottom: 10px;
 }
 
 .comment-tab-item{
@@ -163,21 +167,19 @@
 }
 
 .comment-item{
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.comment-header{
-    background-color: #E7EDF5;
-}
-
-.comment-body{
-    background-color: #E7EDF5;
+    padding: 10px;
+    border-radius: 10px/10px;
+    background-color: rgb(236, 236, 236);
 }
 
 .profile-container{
     display:block;
     text-align: center;
+}
+
+.bio-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .avatar{
@@ -191,7 +193,7 @@
     border-radius: 50%;
 }
 
-.login-register-container{
+.login-register-container, .delete-container{
     text-align: center;
     display: block;
     margin-left: 25%;
@@ -204,4 +206,72 @@
 
 .error{
     color: rgb(221, 119, 119);
+}
+
+.search-bar{
+    padding: 7px;
+    border-radius: 40px/40px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(137, 137, 137);;
+}
+
+.search{
+    text-align: center;
+}
+
+.button{
+    padding: 7px;
+    border-radius: 40px/40px;
+    border-width: 0;
+    background-color: #dedede;
+}
+
+.button-small, .reply-button, .hide-reply-button{
+    padding: 5px;
+    border-radius: 40px/40px;
+    border-width: 0;
+    background-color: #dedede;
+}
+
+.button-edit{
+    padding: 5px;
+    border-radius: 40px/40px;
+    border-width: 0;
+    background-color: #abd8ff;
+}
+
+.button-edit:hover{
+    background-color: #79b1e1;
+}
+
+.button-edit:focus{
+    background-color: #4d96d5;
+}
+
+.button:hover, .button-small:hover, .reply-button:hover, .hide-reply-button:hover{
+    background-color: rgb(191, 191, 191);
+}
+
+.button:focus, .button-small:focus, .reply-button:focus, .hide-reply-button:focus{
+    background-color: rgb(137, 137, 137);
+}
+
+/* if using the circle method
+.link-underline{
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 40px/40px;
+    border-width: 0;
+}
+*/
+
+.link-underline:hover{
+    /*background-color: rgb(191, 191, 191);*/
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
