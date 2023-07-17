@@ -11,20 +11,15 @@
 .section-header{
     height: 50px;
     display: flex;
+    align-items: center;
 }
 
 .section-header-title{
     font-size: x-large;
-    align-self: flex-end;
-}
-
-.section-header-link{
-    align-self: flex-end;
 }
 
 .section-header-options{
     margin-left: auto;
-    align-self: flex-end;
 }
 
 .gallery-container{
