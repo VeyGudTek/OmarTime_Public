@@ -19,7 +19,7 @@
 
     <div class="post-container">
         <div class="section-header">
-            <div class="section-header-title">Posts</div>&nbsp<div class="section-header-link"><a class="button-edit" href="{% url 'create_post' %}">create</a></div>
+            <div class="section-header-title">Posts</div>&nbsp<div class="section-header-link"><a class="button-edit" href="{% url 'create_post' %}">Create</a></div>
             <div class="section-header-options">
                 {% if query %}
                     <a href="{% url 'home' %}?q={{query}}">Relevant</a>
